@@ -56,6 +56,7 @@ public class UCrop {
 
     /**
      * This method creates new Intent builder and sets both source and destination image URIs.
+     * 创建新的builder
      *
      * @param source      Uri for image to crop
      * @param destination Uri for saving the cropped image
@@ -74,6 +75,7 @@ public class UCrop {
     /**
      * Set an aspect ratio for crop bounds.
      * User won't see the menu with other ratios options.
+     * 设置宽高比
      *
      * @param x aspect ratio X
      * @param y aspect ratio Y
@@ -87,6 +89,7 @@ public class UCrop {
     /**
      * Set an aspect ratio for crop bounds that is evaluated from source image width and height.
      * User won't see the menu with other ratios options.
+     * 用原图片的宽高比
      */
     public UCrop useSourceImageAspectRatio() {
         mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_X, 0);
@@ -96,6 +99,7 @@ public class UCrop {
 
     /**
      * Set maximum size for result cropped image. Maximum size cannot be less then {@value MIN_SIZE}
+     * 裁剪后最大的宽高
      *
      * @param width  max cropped image width
      * @param height max cropped image height
@@ -114,6 +118,7 @@ public class UCrop {
         return this;
     }
 
+    //参数设置
     public UCrop withOptions(@NonNull Options options) {
         mCropOptionsBundle.putAll(options.getOptionBundle());
         return this;
@@ -121,7 +126,7 @@ public class UCrop {
 
     /**
      * Send the crop Intent from an Activity
-     *
+     *  开始启动activity
      * @param activity Activity to receive result
      */
     public void start(@NonNull Activity activity) {
@@ -140,7 +145,7 @@ public class UCrop {
 
     /**
      * Send the crop Intent from a Fragment
-     *
+     *用fragment启动
      * @param fragment Fragment to receive result
      */
     public void start(@NonNull Context context, @NonNull Fragment fragment) {
@@ -179,7 +184,7 @@ public class UCrop {
 
     /**
      * Get Intent to start {@link UCropActivity}
-     *
+     *获得intent
      * @return Intent for {@link UCropActivity}
      */
     public Intent getIntent(@NonNull Context context) {
@@ -204,7 +209,7 @@ public class UCrop {
 
     /**
      * Retrieve cropped image Uri from the result Intent
-     *
+     *获得输出的uri
      * @param intent crop result intent
      */
     @Nullable
@@ -214,7 +219,7 @@ public class UCrop {
 
     /**
      * Retrieve the width of the cropped image
-     *
+     *获取输出图片的宽度
      * @param intent crop result intent
      */
     public static int getOutputImageWidth(@NonNull Intent intent) {
@@ -232,7 +237,7 @@ public class UCrop {
 
     /**
      * Retrieve cropped image aspect ratio from the result Intent
-     *
+     *获取裁剪后的宽高比
      * @param intent crop result intent
      * @return aspect ratio as a floating point value (x:y) - so it will be 1 for 1:1 or 4/3 for 4:3
      */
@@ -242,7 +247,7 @@ public class UCrop {
 
     /**
      * Method retrieves error from the result intent.
-     *
+     *获取错误的方法
      * @param result crop result Intent
      * @return Throwable that could happen while image processing
      */
@@ -255,48 +260,78 @@ public class UCrop {
     /**
      * Class that helps to setup advanced configs that are not commonly used.
      * Use it with method {@link #withOptions(Options)}
+     * 设置不常用的参数
      */
     public static class Options {
 
+        //压缩的名字
         public static final String EXTRA_COMPRESSION_FORMAT_NAME = EXTRA_PREFIX + ".CompressionFormatName";
+        //压缩的质量
         public static final String EXTRA_COMPRESSION_QUALITY = EXTRA_PREFIX + ".CompressionQuality";
 
+        //允许的手势
         public static final String EXTRA_ALLOWED_GESTURES = EXTRA_PREFIX + ".AllowedGestures";
 
+        //最大的bitmap的大小
         public static final String EXTRA_MAX_BITMAP_SIZE = EXTRA_PREFIX + ".MaxBitmapSize";
+        //最大的缩放...
         public static final String EXTRA_MAX_SCALE_MULTIPLIER = EXTRA_PREFIX + ".MaxScaleMultiplier";
+        //图像裁剪动画时间
         public static final String EXTRA_IMAGE_TO_CROP_BOUNDS_ANIM_DURATION = EXTRA_PREFIX + ".ImageToCropBoundsAnimDuration";
 
+        //暗淡层色彩
         public static final String EXTRA_DIMMED_LAYER_COLOR = EXTRA_PREFIX + ".DimmedLayerColor";
+        //圆形暗淡层
         public static final String EXTRA_CIRCLE_DIMMED_LAYER = EXTRA_PREFIX + ".CircleDimmedLayer";
 
+        //显示裁剪框
         public static final String EXTRA_SHOW_CROP_FRAME = EXTRA_PREFIX + ".ShowCropFrame";
+        //裁剪框的颜色
         public static final String EXTRA_CROP_FRAME_COLOR = EXTRA_PREFIX + ".CropFrameColor";
+        //裁剪框边框宽度
         public static final String EXTRA_CROP_FRAME_STROKE_WIDTH = EXTRA_PREFIX + ".CropFrameStrokeWidth";
 
+        //显示裁剪网格
         public static final String EXTRA_SHOW_CROP_GRID = EXTRA_PREFIX + ".ShowCropGrid";
+        //裁剪网格横向的数量
         public static final String EXTRA_CROP_GRID_ROW_COUNT = EXTRA_PREFIX + ".CropGridRowCount";
+        //裁剪网格纵向的数量
         public static final String EXTRA_CROP_GRID_COLUMN_COUNT = EXTRA_PREFIX + ".CropGridColumnCount";
+        //裁剪网格的颜色
         public static final String EXTRA_CROP_GRID_COLOR = EXTRA_PREFIX + ".CropGridColor";
+        //裁剪网格的边框宽度
         public static final String EXTRA_CROP_GRID_STROKE_WIDTH = EXTRA_PREFIX + ".CropGridStrokeWidth";
 
+        //toolbar颜色
         public static final String EXTRA_TOOL_BAR_COLOR = EXTRA_PREFIX + ".ToolbarColor";
+        //状态栏的颜色
         public static final String EXTRA_STATUS_BAR_COLOR = EXTRA_PREFIX + ".StatusBarColor";
+        //多彩的裁剪组件活跃？
         public static final String EXTRA_UCROP_COLOR_WIDGET_ACTIVE = EXTRA_PREFIX + ".UcropColorWidgetActive";
 
+        //toolbar组件的颜色
         public static final String EXTRA_UCROP_WIDGET_COLOR_TOOLBAR = EXTRA_PREFIX + ".UcropToolbarWidgetColor";
+        //toolbar组件标题
         public static final String EXTRA_UCROP_TITLE_TEXT_TOOLBAR = EXTRA_PREFIX + ".UcropToolbarTitleText";
+        //toolbar取消图层
         public static final String EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE = EXTRA_PREFIX + ".UcropToolbarCancelDrawable";
+        //toolbar裁剪图层
         public static final String EXTRA_UCROP_WIDGET_CROP_DRAWABLE = EXTRA_PREFIX + ".UcropToolbarCropDrawable";
 
+        //logo颜色
         public static final String EXTRA_UCROP_LOGO_COLOR = EXTRA_PREFIX + ".UcropLogoColor";
 
+        //隐藏底部控件
         public static final String EXTRA_HIDE_BOTTOM_CONTROLS = EXTRA_PREFIX + ".HideBottomControls";
+        //移动裁剪框
         public static final String EXTRA_FREE_STYLE_CROP = EXTRA_PREFIX + ".FreeStyleCrop";
 
+        //用默认的宽高比
         public static final String EXTRA_ASPECT_RATIO_SELECTED_BY_DEFAULT = EXTRA_PREFIX + ".AspectRatioSelectedByDefault";
+        //宽高比选择项
         public static final String EXTRA_ASPECT_RATIO_OPTIONS = EXTRA_PREFIX + ".AspectRatioOptions";
 
+        //根视图的背景色
         public static final String EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR = EXTRA_PREFIX + ".UcropRootViewBackgroundColor";
 
 

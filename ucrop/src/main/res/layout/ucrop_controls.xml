@@ -68,7 +68,7 @@
             style="@style/ucrop_WrapperIconState">
 
             <ImageView
-                android:id="@+id/image_view_state_rotate"
+                android:id="state_scale@+id/image_view_state_rotate"
                 style="@style/ucrop_ImageViewWidgetIcon"
                 android:src="@drawable/ucrop_ic_rotate"/>
 

@@ -553,14 +553,19 @@ public class UCropActivity extends AppCompatActivity {
         }
     };
 
+    //手势初始化
     private void setInitialState() {
+        //
         if (mShowBottomControls) {
             if (mWrapperStateAspectRatio.getVisibility() == View.VISIBLE) {
+                //如果中间的宽高比控件显示了，就默认中间的
                 setWidgetState(R.id.state_aspect_ratio);
             } else {
+                //否则选择缩放的
                 setWidgetState(R.id.state_scale);
             }
         } else {
+            //如果底部控件没有显示，默认选择第一种手势
             setAllowedGestures(0);
         }
     }
